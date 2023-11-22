@@ -48,7 +48,8 @@ class TRANetEnhancer(object):
             Y[:,:,i:i+1,:] = torch.from_numpy(out[0])
 
 
-        y = torch.istft(torch.from_numpy(X), self.n_fft, self.n_hop, self.n_fft, torch.hann_window(self.n_fft))
+        y = torch.istft(Y[:,:,:,0] + 1j*Y[:,:,:,1], self.n_fft, self.n_hop, self.n_fft, torch.hann_window(self.n_fft),return_complex=False)
+
 
         return y
 

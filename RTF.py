@@ -19,19 +19,27 @@ x2 = np.expand_dims(x,0)
 m1 = TRANetEnhancer("mpANC_v99.onnx")
 m2 = NSNet2_infer()
 m3 = TRANetEnhancer("mpANC_v100.onnx")
+m4 = TRANetEnhancer("mpANC_v101.onnx")
 
 # estimatte RTF
 tic = time.time()
 for i in tqdm(range(n_iter)) : 
-    y = m2(x)
+    y = m4(x2)
 toc = time.time()
-print("RTF NSNet2 : {}".format((toc-tic)/n_iter/duration))
+print("RTF TRANet_v101 : {}".format((toc-tic)/n_iter/duration))
 
 tic = time.time()
 for i in tqdm(range(n_iter)) : 
     y = m3(x2)
 toc = time.time()
 print("RTF TRANet_v100 : {}".format((toc-tic)/n_iter/duration))
+
+
+tic = time.time()
+for i in tqdm(range(n_iter)) : 
+    y = m2(x)
+toc = time.time()
+print("RTF NSNet2 : {}".format((toc-tic)/n_iter/duration))
 
 tic = time.time()
 for i in tqdm(range(n_iter)) : 

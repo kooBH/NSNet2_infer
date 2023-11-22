@@ -2,3 +2,5 @@ onnxruntime
 librosa
 scipy
 torch
+numpy
+tqdm
