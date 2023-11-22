@@ -18,6 +18,7 @@ x2 = np.expand_dims(x,0)
 #  Load models
 m1 = TRANetEnhancer("mpANC_v99.onnx")
 m2 = NSNet2_infer()
+m3 = TRANetEnhancer("mpANC_v100.onnx")
 
 # estimatte RTF
 tic = time.time()
@@ -26,6 +27,11 @@ for i in tqdm(range(n_iter)) :
 toc = time.time()
 print("RTF NSNet2 : {}".format((toc-tic)/n_iter/duration))
 
+tic = time.time()
+for i in tqdm(range(n_iter)) : 
+    y = m3(x2)
+toc = time.time()
+print("RTF TRANet_v100 : {}".format((toc-tic)/n_iter/duration))
 
 tic = time.time()
 for i in tqdm(range(n_iter)) : 
